@@ -35,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import kh.roponpov.mobile_banking_assingment.R
 import kh.roponpov.mobile_banking_assingment.core.enums.BankCardType
+import kh.roponpov.mobile_banking_assingment.models.AccountType
 import kh.roponpov.mobile_banking_assingment.models.BankCardModel
 import java.text.DecimalFormat
 
@@ -42,13 +43,22 @@ import java.text.DecimalFormat
 fun BankCardSection() {
     val bankCards = arrayOf(
         BankCardModel(
-            accountNumber = "1234-5678-90",
+            accountType = AccountType.JOINT,
+            accountNumber = "1234-5678-11",
             accountBalance = 2749.00,
             bankCardType = BankCardType.PRIMARY,
         ),
         BankCardModel(
+            accountType = AccountType.SAVINGS,
             accountNumber = "3433-29032-12",
-            accountBalance = 93842.00,
+            accountIcon = R.drawable.ic_saving,
+            accountBalance = 50.00,
+            bankCardType = BankCardType.SECONDARY,
+        ),
+        BankCardModel(
+            accountType = AccountType.BUSINESS,
+            accountNumber = "2342-00023-13",
+            accountBalance = 19990.00,
             bankCardType = BankCardType.SECONDARY,
         )
     )
@@ -87,8 +97,7 @@ fun BankCardSection() {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(5.dp)
                     ) {
-                        Text(
-                            "Account Name",
+                        Text(card.accountType.text,
                             style = MaterialTheme.typography.labelLarge
                         )
                         Image(
@@ -151,7 +160,7 @@ fun BankCardSection() {
                 ) {
                     Image(
                         modifier = Modifier.size(40.dp),
-                        painter = painterResource(R.drawable.ic_bank),
+                        painter = painterResource(card.accountIcon!!),
                         contentDescription = "Bank"
                     )
 
