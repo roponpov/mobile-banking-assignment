@@ -32,9 +32,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kh.roponpov.mobile_banking_assignment.R
 import kh.roponpov.mobile_banking_assignment.models.ServiceShortcutModel
 import kh.roponpov.mobile_banking_assignment.utils.AppUtil
+import kh.roponpov.mobile_banking_assignment.R
 
 @Composable
 fun CardScreen() {
