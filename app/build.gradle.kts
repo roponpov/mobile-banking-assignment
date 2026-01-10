@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "kh.roponpov.mobile_banking_assingment"
+    namespace = "kh.roponpov.mobile_banking_assignment"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "kh.roponpov.mobile_banking_assingment"
+        applicationId = "kh.roponpov.mobile_banking_assignment"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
