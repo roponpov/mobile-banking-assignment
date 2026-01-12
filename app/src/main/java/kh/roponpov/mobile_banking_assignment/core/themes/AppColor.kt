@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 
 // Brand Colors
 val BankingNavy = Color(0xFF1B2531)
-val BankingTeal = Color(0xFF2D6A61)
+val BankingTeal = Color(0xFF1B3351)
 val BankingTealLight = Color(0xFFE8F2F0)
 
 // Status Colors (Transactions)

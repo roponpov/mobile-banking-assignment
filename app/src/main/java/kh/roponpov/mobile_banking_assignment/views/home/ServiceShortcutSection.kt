@@ -128,7 +128,7 @@ fun ServiceShortcutSection() {
                     color = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
                 ),
                 colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.5f)
+                    containerColor = MaterialTheme.colorScheme.onPrimary
                 )
             ) {
                 Box(

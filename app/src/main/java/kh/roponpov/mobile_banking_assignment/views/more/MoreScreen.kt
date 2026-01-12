@@ -1,7 +1,6 @@
 package kh.roponpov.mobile_banking_assignment.views.more
 
 import android.content.res.Configuration
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -15,31 +14,21 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.systemBars
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,14 +41,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.roponpov.mobile_banking_assignment.R
 import kh.roponpov.mobile_banking_assignment.models.SettingModel
-import kh.roponpov.mobile_banking_assignment.views.home.HomeScreen
-import org.w3c.dom.Text
 
 @Composable
 fun MoreScreen() {
-    Scaffold (
+    Scaffold(
         contentWindowInsets = WindowInsets(0)
-    ){ paddingValue ->
+    ) { paddingValue ->
 
         val settings = arrayOf(
             SettingModel(
@@ -87,7 +74,7 @@ fun MoreScreen() {
                             )
                         )
                     )
-               },
+                },
             ),
             SettingModel(
                 route = "/contact",
@@ -205,27 +192,27 @@ fun MoreScreen() {
                         .fillMaxWidth()
                         .padding(top = 350.dp)
                         .background(
-                            color = MaterialTheme.colorScheme.primary,
+                            color = MaterialTheme.colorScheme.onPrimary,
                             shape = RoundedCornerShape(topEnd = 16.dp, topStart = 16.dp)
                         )
-                ){
-                    LazyColumn (
+                ) {
+                    LazyColumn(
                         modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
-                    ){
-                        items(settings){ setting ->
+                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        items(settings) { setting ->
                             Card(
                                 modifier = Modifier.fillMaxWidth(),
                                 colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = .2f)
+                                    containerColor = MaterialTheme.colorScheme.primary
                                 ),
                             ) {
-                                Row (
+                                Row(
                                     modifier = Modifier.padding(16.dp),
                                     verticalAlignment = Alignment.CenterVertically,
                                     horizontalArrangement = Arrangement.spacedBy(10.dp),
-                                ){
+                                ) {
                                     Icon(
                                         modifier = Modifier.size(25.dp),
                                         painter = painterResource(setting.icon),
@@ -249,10 +236,6 @@ fun MoreScreen() {
                                     )
                                 }
                             }
-                        }
-
-                        item {
-                            Spacer(modifier = Modifier.height(400.dp))
                         }
                     }
                 }

@@ -1,10 +1,17 @@
 package kh.roponpov.mobile_banking_assignment.views.home
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,13 +25,8 @@ import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun HomeScreen() {
-    // 1. Remember the LazyListState
     val listState = rememberLazyListState()
-
-    // 2. Track scroll offset
     var scrollOffset by remember { mutableFloatStateOf(0f) }
-
-    // 3. Collect scroll changes
     LaunchedEffect(listState) {
         snapshotFlow { listState.firstVisibleItemIndex to listState.firstVisibleItemScrollOffset }
             .collectLatest { (index, offset) ->
@@ -37,7 +39,8 @@ fun HomeScreen() {
     ) { paddingValues ->
         LazyColumn(
             state = listState,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize(),
             contentPadding = paddingValues,
         ) {
             item { BankCardSection() }

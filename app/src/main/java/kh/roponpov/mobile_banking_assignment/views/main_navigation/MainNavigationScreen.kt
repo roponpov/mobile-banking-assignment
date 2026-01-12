@@ -28,7 +28,7 @@ fun MainScreen(paddingValues: PaddingValues) {
 
     Scaffold(
         contentWindowInsets = WindowInsets(0),
-                bottomBar = {
+        bottomBar = {
             BottomBarSection(
                 navController = navController,
                 items = items
