@@ -37,7 +37,7 @@ fun MainScreen(paddingValues: PaddingValues) {
     ) { padding ->
         NavHost(
             navController = navController,
-            startDestination = BottomNavigationItem.More.route,
+            startDestination = BottomNavigationItem.Home.route,
             modifier = Modifier.padding(padding)
         ) {
             composable(BottomNavigationItem.Home.route) {

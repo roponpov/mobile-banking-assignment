@@ -27,6 +27,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -69,7 +70,7 @@ fun MoreScreen() {
                     Text(
                         "English",
                         style = MaterialTheme.typography.titleMedium.copy(
-                            color = MaterialTheme.colorScheme.onPrimary.copy(
+                            color = MaterialTheme.colorScheme.primary.copy(
                                 alpha = .6f
                             )
                         )
@@ -202,10 +203,10 @@ fun MoreScreen() {
                         verticalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         items(settings) { setting ->
-                            Card(
+                            OutlinedCard(
                                 modifier = Modifier.fillMaxWidth(),
                                 colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.primary
+                                    containerColor = MaterialTheme.colorScheme.onPrimary
                                 ),
                             ) {
                                 Row(
@@ -216,13 +217,13 @@ fun MoreScreen() {
                                     Icon(
                                         modifier = Modifier.size(25.dp),
                                         painter = painterResource(setting.icon),
-                                        tint = MaterialTheme.colorScheme.onPrimary,
+                                        tint = MaterialTheme.colorScheme.primary,
                                         contentDescription = ""
                                     )
                                     Text(
                                         setting.label,
                                         style = MaterialTheme.typography.titleMedium.copy(
-                                            color = MaterialTheme.colorScheme.onPrimary
+                                            color = MaterialTheme.colorScheme.primary
                                         )
                                     )
                                     Spacer(modifier = Modifier.weight(1f))
@@ -231,7 +232,7 @@ fun MoreScreen() {
 
                                     Icon(
                                         imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                                        tint = MaterialTheme.colorScheme.onPrimary,
+                                        tint = MaterialTheme.colorScheme.primary,
                                         contentDescription = "Arrow Forward"
                                     )
                                 }
