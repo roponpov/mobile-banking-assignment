@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -237,11 +238,14 @@ fun AccountScreen() {
                         horizontalAlignment = Alignment.End,
                         verticalArrangement = Arrangement.spacedBy(5.dp)
                     ) {
-                        Image(
-                            modifier = Modifier.size(40.dp),
-                            painter = painterResource(card.accountIcon!!),
-                            contentDescription = "Bank"
-                        )
+                        card.accountIcon?.let {
+                            Icon(
+                                modifier = Modifier.size(40.dp),
+                                painter = painterResource(card.accountIcon),
+                                tint = MaterialTheme.colorScheme.primary,
+                                contentDescription = "Bank"
+                            )
+                        }
 
                         Text(
                             "Available Balance",

@@ -127,7 +127,7 @@ fun HomeTopBarSection(scrollOffset: Float){
 
             Box(
                 modifier = Modifier
-                    .size(30.dp)
+                    .size(32.dp)
                     .background(
                         color = MaterialTheme.colorScheme.onPrimary,
                         shape = RoundedCornerShape(5.dp)
@@ -140,7 +140,7 @@ fun HomeTopBarSection(scrollOffset: Float){
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    modifier = Modifier.padding(5.dp),
+                    modifier = Modifier.padding(8.dp),
                     painter = notificationPainter,
                     contentDescription = "Notification"
                 )
@@ -150,7 +150,7 @@ fun HomeTopBarSection(scrollOffset: Float){
 
             Box(
                 modifier = Modifier
-                    .size(30.dp)
+                    .size(32.dp)
                     .background(
                         color = MaterialTheme.colorScheme.onPrimary,
                         shape = RoundedCornerShape(5.dp)
@@ -163,7 +163,7 @@ fun HomeTopBarSection(scrollOffset: Float){
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    modifier = Modifier.padding(5.dp),
+                    modifier = Modifier.padding(8.dp),
                     painter = khmerQrPainter,
                     contentDescription = "Khmer QR"
                 )

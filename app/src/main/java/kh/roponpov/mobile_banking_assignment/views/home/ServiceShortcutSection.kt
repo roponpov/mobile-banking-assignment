@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -100,8 +101,9 @@ fun ServiceShortcutSection() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.spacedBy(10.dp),
                     ) {
-                        Image(
+                        Icon(
                             painter = painterResource(it.serviceIcon),
+                            tint = MaterialTheme.colorScheme.primary,
                             contentDescription = it.serviceName
                         )
                         Text(
@@ -140,8 +142,9 @@ fun ServiceShortcutSection() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.spacedBy(10.dp),
                     ) {
-                        Image(
+                        Icon(
                             painter = painterResource(it.serviceIcon),
+                            tint = MaterialTheme.colorScheme.primary,
                             contentDescription = it.serviceName
                         )
                         Text(

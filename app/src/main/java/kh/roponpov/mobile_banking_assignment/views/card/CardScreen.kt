@@ -28,15 +28,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kh.roponpov.mobile_banking_assignment.R
+import kh.roponpov.mobile_banking_assignment.core.extensions.formatTransactionAmount
+import kh.roponpov.mobile_banking_assignment.models.CardTypeModel
 import kh.roponpov.mobile_banking_assignment.models.ServiceShortcutModel
 import kh.roponpov.mobile_banking_assignment.utils.AppUtil
 
@@ -59,7 +63,21 @@ fun CardScreen() {
             serviceIcon = R.drawable.ic_setting,
         )
     )
-    val pagerState = rememberPagerState(pageCount = { services.count() })
+    val mobileBaningDigitalCard = remember {
+        listOf(
+            CardTypeModel("MASTER_BLACK", R.drawable.master_card),
+            CardTypeModel("MASTER_PURPLE", R.drawable.visa_card),
+            CardTypeModel("MASTER_GREEN", R.drawable.green_master_card),
+        )
+    }
+    val pagerState = rememberPagerState(pageCount = { mobileBaningDigitalCard.count() })
+
+    val filteredTransactions = remember(pagerState.currentPage) {
+        TransactionModel.transactions.filter {
+            it.cardNumber == mobileBaningDigitalCard[pagerState.currentPage].cardNumber
+        }
+    }
+
 
     LazyColumn(
         modifier = Modifier.windowInsetsPadding(WindowInsets.statusBars)
@@ -67,15 +85,16 @@ fun CardScreen() {
         item {
             HorizontalPager(
                 state = pagerState,
-                contentPadding = PaddingValues(start = 16.dp, top = 16.dp, end = 16.dp),
+                contentPadding = PaddingValues(start = 16.dp, top = 16.dp, end = 32.dp),
                 pageSpacing = 16.dp,
-            ) { _ ->
+            ) { index ->
+                val card = mobileBaningDigitalCard[index]
                 Image(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .aspectRatio(1.8f)
+                        .aspectRatio(1.5f)
                         .clip(RoundedCornerShape(16.dp)),
-                    painter = painterResource(R.drawable.banner_mobile_banking_card),
+                    painter = painterResource(card.image),
                     contentDescription = "Banner",
                     contentScale = ContentScale.FillHeight
                 )
@@ -142,7 +161,7 @@ fun CardScreen() {
             )
         }
 
-        items(TransactionModel.transactions) { transaction ->
+        items(filteredTransactions) { transaction ->
             OutlinedCard(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -156,7 +175,7 @@ fun CardScreen() {
                 Row(
                     modifier = Modifier.padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(5.dp)
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     if (transaction.image != 0 && transaction.image != null) {
                         Image(
@@ -205,12 +224,14 @@ fun CardScreen() {
                     Spacer(modifier = Modifier.weight(1f))
 
                     Text(
-                        transaction.amount.toString(),
+                        transaction.amount.formatTransactionAmount(
+                            currency = transaction.currency
+                        ),
                         style = MaterialTheme.typography.titleMedium.copy(
                             color = if (transaction.amount > 0.0)
-                                MaterialTheme.colorScheme.primary
+                                Color(0xFFC00507)
                             else
-                                MaterialTheme.colorScheme.error,
+                                Color(0xFF018A00),
                             fontWeight = FontWeight.Bold,
                         )
                     )

@@ -57,7 +57,7 @@ fun NewsAndPromotionSection() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(120.dp)
+                .height(150.dp)
         ) {
             // 🔹 Slider
             HorizontalPager(

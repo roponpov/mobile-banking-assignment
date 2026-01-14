@@ -70,7 +70,7 @@ fun MoreScreen() {
                     Text(
                         "English",
                         style = MaterialTheme.typography.titleMedium.copy(
-                            color = MaterialTheme.colorScheme.primary.copy(
+                            color = MaterialTheme.colorScheme.onBackground.copy(
                                 alpha = .6f
                             )
                         )
@@ -217,13 +217,13 @@ fun MoreScreen() {
                                     Icon(
                                         modifier = Modifier.size(25.dp),
                                         painter = painterResource(setting.icon),
-                                        tint = MaterialTheme.colorScheme.primary,
+                                        tint = MaterialTheme.colorScheme.onBackground,
                                         contentDescription = ""
                                     )
                                     Text(
                                         setting.label,
                                         style = MaterialTheme.typography.titleMedium.copy(
-                                            color = MaterialTheme.colorScheme.primary
+                                            color = MaterialTheme.colorScheme.onBackground
                                         )
                                     )
                                     Spacer(modifier = Modifier.weight(1f))
@@ -232,7 +232,7 @@ fun MoreScreen() {
 
                                     Icon(
                                         imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                                        tint = MaterialTheme.colorScheme.primary,
+                                        tint = MaterialTheme.colorScheme.onBackground,
                                         contentDescription = "Arrow Forward"
                                     )
                                 }

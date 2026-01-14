@@ -18,6 +18,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -99,7 +100,8 @@ fun BankCardSection() {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(5.dp)
                     ) {
-                        Text(card.accountType.text,
+                        Text(
+                            card.accountType.text,
                             style = MaterialTheme.typography.labelLarge
                         )
                         Image(
@@ -161,8 +163,9 @@ fun BankCardSection() {
                     verticalArrangement = Arrangement.spacedBy(5.dp)
                 ) {
                     card.accountIcon?.let {
-                        Image(
+                        Icon(
                             painter = painterResource(it),
+                            tint = MaterialTheme.colorScheme.primary,
                             contentDescription = "Bank"
                         )
                     }

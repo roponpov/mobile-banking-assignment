@@ -22,3 +22,8 @@ Thumbs.db
 
 # Kotlin / Compose
 .kotlin/
+
+# Build outputs
+app/release/
+*.apk
+*.bundle
