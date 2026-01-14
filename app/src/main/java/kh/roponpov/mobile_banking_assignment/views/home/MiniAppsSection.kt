@@ -1,6 +1,5 @@
 package kh.roponpov.mobile_banking_assignment.views.home
 
-import TransactionModel
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -21,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,16 +30,56 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
+import kh.roponpov.mobile_banking_assignment.R
+import kh.roponpov.mobile_banking_assignment.models.MiniAppModel
 import kh.roponpov.mobile_banking_assignment.utils.AppUtil
 
 @Composable
-fun RecentSection(
-    transactions: List<TransactionModel> = TransactionModel.transactions
-){
+fun MiniAppsSection(){
+    val miniApps = remember {
+        listOf(
+            MiniAppModel(
+                appChannel = "kh.roponpov.smart_axiata",
+                appIcon = R.drawable.ic_smart,
+                appName = "Smart Axiata",
+                isAvailable = true,
+            ),
+            MiniAppModel(
+                appChannel = "kh.roponpov.metfone",
+                appIcon = R.drawable.ic_metfone,
+                appName = "Metfone Service",
+                isAvailable = false,
+            ),
+
+            MiniAppModel(
+                appChannel = "kh.roponpov.stock_trader",
+                appIcon = R.drawable.ic_stock_trader,
+                appName = "Stock Trader",
+                isAvailable = true,
+            ),
+
+            MiniAppModel(
+                appChannel = "kh.roponpov.random_chat",
+                appIcon = R.drawable.ic_random_chat,
+                appName = "Random Chat",
+                isAvailable = true,
+            ),
+
+            MiniAppModel(
+                appChannel = "kh.roponpov.psa_369",
+                appIcon = R.drawable.ic_e_commerce,
+                appName = "Psa 369",
+                isAvailable = false,
+            ),
+        )
+    }
+
     Text(
-        "Recent Transactions",
-        modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 5.dp),
+        "Mini Apps",
+        modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp),
         style = MaterialTheme.typography.titleMedium.copy(
             fontWeight = FontWeight.Bold
         )
@@ -48,14 +88,14 @@ fun RecentSection(
         modifier = Modifier
             .padding(horizontal = 16.dp)
             .background(
-                color = MaterialTheme.colorScheme.onPrimary,
-                shape = RoundedCornerShape(16.dp)
-            ),
+            color = MaterialTheme.colorScheme.onPrimary,
+            shape = RoundedCornerShape(16.dp)
+        ),
         contentPadding = PaddingValues(start = 16.dp, top = 16.dp, bottom = 16.dp),
     ) {
         items(
-            items = transactions,
-            key = { it.accountNumber }
+            items = miniApps,
+            key = { it.appName }
         ) { transaction ->
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -70,10 +110,10 @@ fun RecentSection(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        if (transaction.image != 0 && transaction.image != null) {
+                        if (transaction.appIcon != 0) {
                             Image(
                                 modifier = Modifier.fillMaxSize(),
-                                painter = painterResource(transaction.image!!),
+                                painter = painterResource(transaction.appIcon),
                                 contentScale = ContentScale.Crop,
                                 contentDescription = null,
                             )
@@ -85,7 +125,7 @@ fun RecentSection(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = AppUtil.getInitials(transaction.accountName),
+                                    text = AppUtil.getInitials(transaction.appName),
                                     style = MaterialTheme.typography.titleMedium.copy(
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -98,19 +138,15 @@ fun RecentSection(
 
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = transaction.accountName,
-                    style = MaterialTheme.typography.labelLarge.copy(
-                        fontWeight = FontWeight.Bold
+                    text = transaction.appName,
+                    style = MaterialTheme.typography.labelMedium.copy(
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground.copy(
+                            alpha = .5f
+                        ),
+                        lineHeight =  1.2.em,
                     ),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    text = transaction.accountNumber,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = Color.Gray,
-                    maxLines = 1,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     textAlign = TextAlign.Center
                 )
@@ -125,6 +161,6 @@ fun RecentSection(
     showBackground = true,
     name = "Light Mode"
 )
-fun RecentSectionPreview() {
+fun MiniAppsSectionPreview() {
     HomeScreen()
 }

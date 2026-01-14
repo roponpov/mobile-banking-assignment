@@ -193,7 +193,7 @@ fun MoreScreen() {
                         .fillMaxWidth()
                         .padding(top = 350.dp)
                         .background(
-                            color = MaterialTheme.colorScheme.onPrimary,
+                            color = MaterialTheme.colorScheme.background,
                             shape = RoundedCornerShape(topEnd = 16.dp, topStart = 16.dp)
                         )
                 ) {
@@ -203,7 +203,7 @@ fun MoreScreen() {
                         verticalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         items(settings) { setting ->
-                            OutlinedCard(
+                            Card(
                                 modifier = Modifier.fillMaxWidth(),
                                 colors = CardDefaults.cardColors(
                                     containerColor = MaterialTheme.colorScheme.onPrimary

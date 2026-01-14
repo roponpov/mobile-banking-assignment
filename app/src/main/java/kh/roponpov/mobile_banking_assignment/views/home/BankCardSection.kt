@@ -41,31 +41,34 @@ import java.text.DecimalFormat
 
 @Composable
 fun BankCardSection() {
-    val bankCards = arrayOf(
-        BankCardModel(
-            accountType = AccountType.JOINT,
-            accountNumber = "1234-5678-11",
-            accountBalance = 2749.00,
-            bankCardType = BankCardType.PRIMARY,
-        ),
-        BankCardModel(
-            accountType = AccountType.SAVINGS,
-            accountNumber = "3433-29032-12",
-            accountIcon = R.drawable.ic_saving,
-            accountBalance = 50.00,
-            bankCardType = BankCardType.SECONDARY,
-        ),
-        BankCardModel(
-            accountType = AccountType.BUSINESS,
-            accountNumber = "2342-00023-13",
-            accountBalance = 19990.00,
-            bankCardType = BankCardType.SECONDARY,
+    val bankCards = remember {
+        listOf(
+            BankCardModel(
+                accountType = AccountType.JOINT,
+                accountNumber = "1234-5678-11",
+                accountBalance = 2749.00,
+                bankCardType = BankCardType.PRIMARY,
+            ),
+            BankCardModel(
+                accountType = AccountType.SAVINGS,
+                accountNumber = "3433-29032-12",
+                accountIcon = R.drawable.ic_saving,
+                accountBalance = 50.00,
+                bankCardType = BankCardType.SECONDARY,
+            ),
+            BankCardModel(
+                accountType = AccountType.BUSINESS,
+                accountNumber = "2342-00023-13",
+                accountBalance = 19990.00,
+                bankCardType = BankCardType.SECONDARY,
+            )
         )
-    )
+    }
     val pagerState = rememberPagerState(pageCount = { bankCards.count() })
 
     HorizontalPager(
         state = pagerState,
+        key = { bankCards[it].accountNumber },
         contentPadding = PaddingValues(start = 16.dp, end = 32.dp),
         pageSpacing = 16.dp,
     ) { page ->
@@ -75,7 +78,6 @@ fun BankCardSection() {
 
         OutlinedCard(
             modifier = Modifier.fillMaxWidth(),
-            // onClick = {},
             border = BorderStroke(
                 width = 2.dp,
                 color = MaterialTheme.colorScheme.primary.copy(alpha = .2f)
@@ -158,11 +160,12 @@ fun BankCardSection() {
                     horizontalAlignment = Alignment.End,
                     verticalArrangement = Arrangement.spacedBy(5.dp)
                 ) {
-                    Image(
-                        modifier = Modifier.size(40.dp),
-                        painter = painterResource(card.accountIcon!!),
-                        contentDescription = "Bank"
-                    )
+                    card.accountIcon?.let {
+                        Image(
+                            painter = painterResource(it),
+                            contentDescription = "Bank"
+                        )
+                    }
 
                     Text(
                         "Available Balance",
