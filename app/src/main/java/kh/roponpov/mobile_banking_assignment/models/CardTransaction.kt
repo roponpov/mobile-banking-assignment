@@ -2,7 +2,7 @@ package kh.roponpov.mobile_banking_assignment.models
 
 import TransactionModel
 
-class CardTransaction(
+class CardTypeModel(
     val cardNumber: String,
-    val transactions: ArrayList<TransactionModel>
+    val image: Int,
 )
